@@ -29,7 +29,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Fallback — serve storefront for any unmatched routes
-app.get('*', (req, res) => {
+app.use((req, res) => {
   if (req.path.startsWith('/admin')) {
     res.sendFile(path.join(__dirname, '../admin/index.html'));
   } else {
