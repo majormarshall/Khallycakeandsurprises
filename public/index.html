@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Khally Cakes & Surprises – Bespoke custom cakes, surprise packages, and sweet celebrations. Order online or contact us on WhatsApp." />
+  <title>Khally Cakes & Surprises | Bespoke Cakes & Sweet Celebrations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <img src="/assets/logo.png" alt="Khally Cakes & Surprises Logo" id="nav-logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#products" class="nav-link">Products</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="#order" class="nav-cta-btn" id="orderNavBtn">Order Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg-particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-logo-wrap">
+        <img src="/assets/logo.png" alt="Khally Cakes & Surprises" class="hero-logo" id="heroLogo" />
+      </div>
+      <p class="hero-tagline">Where Every Bite Tells a Story</p>
+      <h1 class="hero-title">Bespoke Cakes &<br/><span class="hero-title-accent">Sweet Surprises</span></h1>
+      <p class="hero-subtitle">Custom-crafted cakes, luxurious celebration packages, and unforgettable moments — made with love for you.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" id="heroOrderBtn" onclick="openOrderModal()">Order Now 🎂</button>
+        <a href="#products" class="btn-outline">Explore Products</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Happy Customers</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">1000+</span><span class="stat-label">Cakes Delivered</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Made with Love</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section" id="products">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-label">Our Creations</span>
+        <h2 class="section-title">Handcrafted Products</h2>
+        <p class="section-desc">Every cake is a masterpiece — lovingly crafted to your specifications with premium ingredients.</p>
+      </div>
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="birthday">Birthday</button>
+        <button class="filter-tab" data-filter="wedding">Wedding</button>
+        <button class="filter-tab" data-filter="surprise">Surprise Packs</button>
+        <button class="filter-tab" data-filter="custom">Custom</button>
+      </div>
+      <div class="products-grid" id="productsGrid">
+        <div class="products-loading">
+          <div class="spinner"></div>
+          <p>Loading our delicious products...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section" id="services">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-label">What We Offer</span>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-desc">From intimate birthdays to grand weddings — we create edible art for every occasion.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎂</div>
+          <h3>Custom Cakes</h3>
+          <p>Fully personalized cakes crafted to your exact design, flavor, and occasion. No idea is too big or small.</p>
+          <a href="#order" class="service-link" onclick="openOrderModal('Custom Cake')">Request This →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎁</div>
+          <h3>Surprise Packages</h3>
+          <p>Curated gift boxes filled with our signature mini cakes, cookies, and sweet treats — perfect for any occasion.</p>
+          <a href="#order" class="service-link" onclick="openOrderModal('Surprise Package')">Request This →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💍</div>
+          <h3>Wedding Cakes</h3>
+          <p>Elegant, multi-tiered masterpieces that make your special day even more unforgettable.</p>
+          <a href="#order" class="service-link" onclick="openOrderModal('Wedding Cake')">Request This →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎉</div>
+          <h3>Event Catering</h3>
+          <p>We supply cakes, pastries, and dessert tables for corporate events, birthdays, bridal showers, and more.</p>
+          <a href="#order" class="service-link" onclick="openOrderModal('Event Catering')">Request This →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚚</div>
+          <h3>Delivery Service</h3>
+          <p>Safe, timely delivery of your orders right to your doorstep — handled with the utmost care.</p>
+          <a href="#contact" class="service-link">Ask About This →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎓</div>
+          <h3>Cake Classes</h3>
+          <p>Learn the art of cake decoration in our beginner and advanced workshops. Book a session today.</p>
+          <a href="#contact" class="service-link">Book a Class →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-label">Our Work</span>
+        <h2 class="section-title">Gallery & Videos</h2>
+        <p class="section-desc">A glimpse into the magic we create — every piece a labor of love.</p>
+      </div>
+      <div class="gallery-filter-tabs">
+        <button class="gallery-tab active" data-type="all" id="gallTabAll">All</button>
+        <button class="gallery-tab" data-type="image" id="gallTabImage">Photos</button>
+        <button class="gallery-tab" data-type="video" id="gallTabVideo">Videos</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-loading">
+          <div class="spinner"></div>
+          <p>Loading gallery...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="section-container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="section-label">Get In Touch</span>
+          <h2 class="section-title">Let's Create Something<br/><span class="accent">Beautiful Together</span></h2>
+          <p>Have a special request? Want to discuss your dream cake? We'd love to hear from you. Reach out via WhatsApp for the fastest response!</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">📱</div>
+              <div>
+                <strong>WhatsApp</strong>
+                <p>+234 817 398 5467</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕒</div>
+              <div>
+                <strong>Working Hours</strong>
+                <p>Mon – Sat: 8am – 8pm</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <strong>Location</strong>
+                <p>Nigeria 🇳🇬</p>
+              </div>
+            </div>
+          </div>
+          <a href="https://wa.me/2348173985467?text=Hello%20Khally%20Cakes!%20I%20would%20like%20to%20inquire%20about%20your%20services." 
+             class="whatsapp-contact-btn" target="_blank" rel="noopener">
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+        <div class="contact-form-wrap">
+          <div class="quick-order-card">
+            <h3>Quick Order Request</h3>
+            <p>Fill in the form below and we'll get back to you via WhatsApp!</p>
+            <form id="quickOrderForm" class="quick-order-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="qName">Your Name *</label>
+                  <input type="text" id="qName" placeholder="e.g. Amara Johnson" required />
+                </div>
+                <div class="form-group">
+                  <label for="qPhone">Phone Number *</label>
+                  <input type="tel" id="qPhone" placeholder="+234..." required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="qProduct">What do you need? *</label>
+                <input type="text" id="qProduct" placeholder="e.g. Birthday cake for 50 people" required />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="qDate">Needed By</label>
+                  <input type="date" id="qDate" />
+                </div>
+                <div class="form-group">
+                  <label for="qQty">Quantity</label>
+                  <input type="number" id="qQty" min="1" value="1" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="qNotes">Additional Notes</label>
+                <textarea id="qNotes" rows="3" placeholder="Design details, flavors, delivery address..."></textarea>
+              </div>
+              <button type="submit" class="btn-primary full-width" id="quickOrderSubmit">
+                Send via WhatsApp 💬
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="/assets/logo.png" alt="Khally Cakes" class="footer-logo" />
+        <p class="footer-tagline">Where Every Bite Tells a Story</p>
+        <p class="footer-desc">Bespoke cakes and sweet surprises crafted with love in Nigeria.</p>
+      </div>
+      <div class="footer-links-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#order" onclick="openOrderModal()">Custom Cakes</a></li>
+          <li><a href="#order" onclick="openOrderModal()">Surprise Packages</a></li>
+          <li><a href="#order" onclick="openOrderModal()">Wedding Cakes</a></li>
+          <li><a href="#contact">Cake Classes</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact-col">
+        <h4>Contact</h4>
+        <p>📱 +234 817 398 5467</p>
+        <p>📍 Nigeria 🇳🇬</p>
+        <a href="https://wa.me/2348173985467" class="footer-wa-btn" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Khally Cakes & Surprises. All rights reserved. Made with ❤️</p>
+    </div>
+  </footer>
+
+  <!-- Order Modal -->
+  <div class="modal-overlay" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeOrderModal()" aria-label="Close modal">✕</button>
+      <div class="modal-header">
+        <h2 id="modalTitle">Place Your Order 🎂</h2>
+        <p>Fill in your details and we'll confirm via WhatsApp!</p>
+      </div>
+      <form id="orderForm" class="order-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="oName">Full Name *</label>
+            <input type="text" id="oName" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="oPhone">Phone Number *</label>
+            <input type="tel" id="oPhone" placeholder="+234..." required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="oEmail">Email Address</label>
+          <input type="email" id="oEmail" placeholder="yourname@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="oProduct">Product / Service *</label>
+          <input type="text" id="oProduct" placeholder="e.g. Custom Birthday Cake" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="oQty">Quantity *</label>
+            <input type="number" id="oQty" min="1" value="1" required />
+          </div>
+          <div class="form-group">
+            <label for="oDate">Needed By *</label>
+            <input type="date" id="oDate" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="oAddress">Delivery Address</label>
+          <input type="text" id="oAddress" placeholder="Your full delivery address" />
+        </div>
+        <div class="form-group">
+          <label for="oNotes">Special Instructions</label>
+          <textarea id="oNotes" rows="3" placeholder="Flavors, colors, design details, inscription..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn-primary full-width" id="orderSubmitBtn">
+            Confirm Order & Open WhatsApp 💬
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Image Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img src="" alt="Gallery image" id="lightboxImg" />
+  </div>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/2348173985467?text=Hello%20Khally%20Cakes%20%26%20Surprises!%20I%20would%20like%20to%20place%20an%20order." 
+     class="whatsapp-float" id="whatsappFloat" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="wa-tooltip">Chat with us!</span>
+  </a>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
