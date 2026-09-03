@@ -37,9 +37,15 @@ app.use((req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🎂 Khally Cakes & Surprises server running!`);
-  console.log(`   Storefront:  http://localhost:${PORT}`);
-  console.log(`   Admin:       http://localhost:${PORT}/admin`);
-  console.log(`   API:         http://localhost:${PORT}/api/health\n`);
-});
+// Only listen when running locally (not on Vercel serverless)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`\n🎂 Khally Cakes & Surprises server running!`);
+    console.log(`   Storefront:  http://localhost:${PORT}`);
+    console.log(`   Admin:       http://localhost:${PORT}/admin`);
+    console.log(`   API:         http://localhost:${PORT}/api/health\n`);
+  });
+}
+
+// Export for Vercel serverless
+module.exports = app;
