@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+const { randomUUID } = require('crypto');
 const supabase = require('../supabase');
 const adminAuth = require('../middleware/auth');
 
@@ -21,7 +21,7 @@ const upload = multer({
 router.post('/upload-image', adminAuth, upload.single('image'), async (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No image provided.' });
   const ext = path.extname(req.file.originalname).toLowerCase();
-  const filename = `products/${uuidv4()}${ext}`;
+  const filename = `products/${randomUUID()}${ext}`;
   const { error: uploadError } = await supabase.storage
     .from('khally-media')
     .upload(filename, req.file.buffer, { contentType: req.file.mimetype, upsert: false });
