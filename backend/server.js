@@ -11,11 +11,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const ROOT = path.resolve(__dirname, '..');
+
 // Serve static files — public storefront
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(ROOT, 'public')));
 
 // Serve admin dashboard under /admin path
-app.use('/admin', express.static(path.join(__dirname, '../admin')));
+app.use('/admin', express.static(path.join(ROOT, 'admin')));
 
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -31,9 +33,9 @@ app.get('/api/health', (req, res) => {
 // Fallback — serve storefront for any unmatched routes
 app.use((req, res) => {
   if (req.path.startsWith('/admin')) {
-    res.sendFile(path.join(__dirname, '../admin/index.html'));
+    res.sendFile(path.join(ROOT, 'admin/index.html'));
   } else {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.sendFile(path.join(ROOT, 'public/index.html'));
   }
 });
 
