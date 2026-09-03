@@ -185,9 +185,18 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Image URL</label>
-              <input type="url" id="pImageUrl" placeholder="https://..." />
-              <small>Paste a direct image link, or upload via Gallery and copy the URL.</small>
+              <label>Product Image</label>
+              <div class="product-img-upload-zone" id="productImgZone">
+                <div class="upload-icon">🖼️</div>
+                <p>Drop image here or <span class="upload-browse">click to browse</span></p>
+                <small>JPG, PNG, WEBP up to 20MB</small>
+              </div>
+              <input type="file" id="pImageFile" accept="image/*" style="display:none" />
+              <div class="product-img-preview" id="productImgPreview" style="display:none">
+                <img id="productImgPreviewImg" src="" alt="Preview" />
+                <button type="button" class="remove-img-btn" onclick="clearProductImage()">✕ Remove</button>
+              </div>
+              <input type="hidden" id="pImageUrl" />
             </div>
             <div class="form-actions">
               <button type="submit" class="btn-gold" id="saveProductBtn">Save Product</button>

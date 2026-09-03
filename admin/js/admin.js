@@ -217,9 +217,76 @@ function showProductForm(clear = true) {
   if (clear) {
     document.getElementById('productId').value = '';
     document.getElementById('productForm').reset();
+    clearProductImage();
   }
 }
-function hideProductForm() { document.getElementById('productFormCard').style.display = 'none'; }
+function hideProductForm() {
+  document.getElementById('productFormCard').style.display = 'none';
+  clearProductImage();
+}
+
+// ===== PRODUCT IMAGE UPLOAD =====
+const productImgZone = document.getElementById('productImgZone');
+const productImgFile = document.getElementById('pImageFile');
+
+productImgZone.addEventListener('click', () => productImgFile.click());
+productImgZone.addEventListener('dragover', e => { e.preventDefault(); productImgZone.classList.add('drag-over'); });
+productImgZone.addEventListener('dragleave', () => productImgZone.classList.remove('drag-over'));
+productImgZone.addEventListener('drop', e => {
+  e.preventDefault();
+  productImgZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) handleProductImageFile(file);
+});
+productImgFile.addEventListener('change', () => {
+  if (productImgFile.files[0]) handleProductImageFile(productImgFile.files[0]);
+});
+
+async function handleProductImageFile(file) {
+  // Show local preview immediately
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('productImgPreviewImg').src = e.target.result;
+    document.getElementById('productImgPreview').style.display = 'block';
+    document.getElementById('productImgZone').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+
+  // Upload to server
+  const indicator = document.createElement('p');
+  indicator.className = 'uploading-indicator';
+  indicator.textContent = '⏳ Uploading image...';
+  document.getElementById('productImgPreview').appendChild(indicator);
+
+  const formData = new FormData();
+  formData.append('image', file);
+  try {
+    const res = await fetch(`${API}/products/upload-image`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: formData
+    });
+    const data = await res.json();
+    if (res.ok) {
+      document.getElementById('pImageUrl').value = data.url;
+      indicator.textContent = '✅ Image uploaded!';
+      setTimeout(() => indicator.remove(), 2000);
+    } else {
+      indicator.textContent = '❌ Upload failed: ' + (data.error || 'Unknown error');
+    }
+  } catch {
+    indicator.textContent = '❌ Upload failed. Check connection.';
+  }
+}
+
+function clearProductImage() {
+  document.getElementById('pImageUrl').value = '';
+  document.getElementById('pImageFile').value = '';
+  document.getElementById('productImgPreviewImg').src = '';
+  document.getElementById('productImgPreview').style.display = 'none';
+  document.getElementById('productImgZone').style.display = 'block';
+  productImgZone.querySelector('p').innerHTML = 'Drop image here or <span class="upload-browse">click to browse</span>';
+}
 
 function editProduct(id) {
   const p = allProducts.find(x => x.id === id);
@@ -233,6 +300,12 @@ function editProduct(id) {
   document.getElementById('pPrice').value = p.price || '';
   document.getElementById('pBadge').value = p.badge || '';
   document.getElementById('pImageUrl').value = p.image_url || '';
+  // Show existing image preview
+  if (p.image_url) {
+    document.getElementById('productImgPreviewImg').src = p.image_url;
+    document.getElementById('productImgPreview').style.display = 'block';
+    document.getElementById('productImgZone').style.display = 'none';
+  }
   document.getElementById('productFormCard').scrollIntoView({ behavior: 'smooth' });
 }
 

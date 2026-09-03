@@ -1,7 +1,35 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 const supabase = require('../supabase');
 const adminAuth = require('../middleware/auth');
+
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage,
+  limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
+  fileFilter: (req, file, cb) => {
+    const allowed = /jpeg|jpg|png|gif|webp/;
+    const ext = path.extname(file.originalname).toLowerCase().replace('.', '');
+    allowed.test(ext) ? cb(null, true) : cb(new Error('Only images allowed.'));
+  }
+});
+
+// POST upload product image (admin only)
+router.post('/upload-image', adminAuth, upload.single('image'), async (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'No image provided.' });
+  const ext = path.extname(req.file.originalname).toLowerCase();
+  const filename = `products/${uuidv4()}${ext}`;
+  const { error: uploadError } = await supabase.storage
+    .from('khally-media')
+    .upload(filename, req.file.buffer, { contentType: req.file.mimetype, upsert: false });
+  if (uploadError) return res.status(500).json({ error: uploadError.message });
+  const { data: urlData } = supabase.storage.from('khally-media').getPublicUrl(filename);
+  res.json({ url: urlData.publicUrl });
+});
+
 
 // GET all products (public)
 router.get('/', async (req, res) => {
